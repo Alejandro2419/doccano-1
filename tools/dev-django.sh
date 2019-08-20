@@ -2,6 +2,10 @@
 
 set -o errexit
 
+apt-get update
+apt-get install unixodbc-dev unixodbc -y
+echo "apt-get <<<<<<<<<<<<<<<<<<<<<<<<"
+
 root="$(dirname "$0")/.."
 app="${root}/app"
 venv="${root}/venv"
