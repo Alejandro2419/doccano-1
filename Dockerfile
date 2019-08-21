@@ -1,10 +1,14 @@
 ARG PYTHON_VERSION="3.6"
 FROM python:${PYTHON_VERSION}-stretch AS builder
 
+RUN apt-get update && apt-get install-y \
+    unixodbc \
+    unixodbc-dev \
+    tdsodbc
 ARG NODE_VERSION="8.x"
 RUN curl -sL "https://deb.nodesource.com/setup_${NODE_VERSION}" | bash - \
  && apt-get install --no-install-recommends -y \
-      nodejs
+      nodejs=8.16.0-1nodesource1
 
 COPY tools/install-mssql.sh /doccano/tools/install-mssql.sh
 RUN /doccano/tools/install-mssql.sh --dev
